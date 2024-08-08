@@ -1,38 +1,190 @@
-.App {
-  text-align: center;
+body {
+  background-color: #3c4059; /* Dark Gray */
+  color: #f2efdf; /* Light Text */
+  font-family: 'Open Sans', sans-serif; /* Default font */
+  margin: 0; /* Remove default body margin */
+  padding: 0; /* Remove default body padding */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h2 {
+  color: #d9765f;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.5rem; /* Larger font size for headings */
+  font-weight: 700; /* Bold headings */
+  margin-bottom: 1rem; /* Space below the heading */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+p {
+  font-size: 1.125rem; /* Slightly larger font size for better readability */
+  line-height: 1.6; /* Increased line height for better readability */
+  margin-bottom: 1.5rem; /* Space below paragraphs */
+  color: #f2efdf; /* Light text color for contrast */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.form-label {
+  color: #f2efdf;
+  margin: 0 0 5px 0;
 }
 
-.App-link {
-  color: #61dafb;
+.form-control {
+  margin: 0 0 10px 0;
 }
 
-@keyframes App-logo-spin {
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.navbar-custom {
+  position: fixed; /* Fix the navbar at the top of the page */
+  top: 0; /* Align to the top of the viewport */
+  left: 0; /* Align to the left of the viewport */
+  right: 0; /* Align to the right of the viewport */
+  background-color: #212529; /* Background color for the navbar */
+  z-index: 1000; /* Ensure the navbar is on top of other content */
+}
+
+.navbar-custom .container {
+  max-width: 1200px; /* Adjust as needed */
+  padding: 0 15px;
+}
+
+.navbar-custom .navbar-brand img {
+  max-height: 50px; /* Adjust the height as needed */
+  width: auto; /* Maintain aspect ratio */
+  display: block; /* Remove any inline spacing issues */
+}
+
+.navbar-custom .navbar-collapse {
+  background-color: #212529; /* Background color for the expanded menu */
+  position: absolute;
+  top: 60px; /* Adjust based on navbar height */
+  right: 0;
+  width: 250px; /* Width of the expanded menu */
+  border-radius: 0 0 0 5px; /* Optional: rounded corners */
+  z-index: 1000; /* Ensure the menu is on top */
+}
+
+.navbar-custom .navbar-nav {
+  margin: 0; /* Remove default margins */
+}
+
+.navbar-custom .navbar-nav .nav-link {
+  color: #f2efdf; /* Text color */
+  padding: 15px; /* Padding for links */
+  display: block; /* Ensure links are block elements */
+}
+
+.navbar-custom .navbar-nav .nav-link:hover,
+.navbar-custom .navbar-nav .nav-link.active {
+  color: #d9765f; /* Accent color on hover and active */
+}
+
+/* Remove border and background color from the hamburger button */
+.navbar-custom .navbar-toggler {
+  border: none; /* Remove border */
+  background: transparent; /* Remove background color */
+}
+
+/* Style the hamburger icon bars */
+.navbar-custom .navbar-toggler-icon {
+  display: inline-block; /* Ensure the icon is inline */
+  position: relative; /* Position bars absolutely within this container */
+  width: 30px; /* Adjust the width of the hamburger icon */
+  height: 24px; /* Adjust the height to fit the bars */
+}
+
+.navbar-custom .navbar-toggler-icon span {
+  content: '';
+  display: block;
+  height: 3px; /* Adjust the thickness of the bars */
+  width: 100%; /* Make bars take full width of the icon */
+  background-color: #f2efdf; /* Color of the bars */
+  position: absolute;
+  left: 0;
+  transition: all 0.3s ease; /* Smooth transition for effects */
+}
+
+/* Add top padding to content below the navbar */
+.main-content {
+  padding-top: 60px; /* Adjust based on navbar height */
+}
+
+.my-5 {
+  animation: fadeIn 1s ease-in-out;
+  padding-top: 80px;
+}
+
+@keyframes fadeIn {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
+  }
+}
+
+.custom-card-body {
+  background-color: #f2efdf; /* Light background */
+  color: #3c4059; /* Default dark text color for the card body */
+  padding: 20px; /* Add padding for spacing */
+  border-radius: 5px; /* Optional: for a rounded look */
+}
+
+.custom-card-body .card-title {
+  color: #3c4059; /* Explicitly set dark text color */
+  font-weight: bold; /* Make titles bold */
+}
+
+.custom-card-body .card-text {
+  margin-top: 10px; /* Space between title and text */
+  color: #3c4059;
+}
+
+.contact-form,
+.contact-info {
+  color: #3c4059; /* Dark text color */
+  padding: 20px; /* Padding for spacing */
+  border-radius: 5px; /* Rounded corners */
+}
+
+.contact-form h2,
+.contact-info h2 {
+  color: #d9765f; /* Accent color for headings */
+}
+
+.contact-form .form-group {
+  margin-bottom: 15px; /* Space between form groups */
+}
+
+.contact-info p {
+  margin-bottom: 10px; /* Space between contact info items */
+}
+
+/* Responsive typography adjustments */
+@media (max-width: 768px) {
+  h2 {
+    font-size: 2rem; /* Slightly smaller font size on smaller screens */
+  }
+
+  p {
+    font-size: 1rem; /* Adjust paragraph font size for smaller screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-form,
+  .contact-info {
+    padding: 15px; /* Adjust padding for smaller screens */
+  }
+}
+
+@media (min-width: 992px) {
+  /* Adjustments for larger screens */
+  .navbar-custom .navbar-collapse {
+    position: static; /* Default positioning for larger screens */
+    background-color: transparent; /* Make background transparent on full width */
+    width: auto; /* Width auto on full width */
   }
 }
