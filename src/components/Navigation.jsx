@@ -2,9 +2,11 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Code, Calendar, Database, Github, Mail } from 'lucide-react';
 import { SECTIONS, ANIMATION_VARIANTS } from '../constants';
+import { useTheme } from '../hooks/useLocalStorage';
 import ThemeToggle from './ThemeToggle';
 
 const Navigation = ({ activeSection, setActiveSection, profileName }) => {
+  const [theme] = useTheme();
   const sections = [
     { id: SECTIONS.ABOUT, label: 'Sobre', icon: Code },
     { id: SECTIONS.EXPERIENCE, label: 'Experiência', icon: Calendar },
@@ -17,7 +19,7 @@ const Navigation = ({ activeSection, setActiveSection, profileName }) => {
     <>
       {/* Desktop Navigation */}
       <motion.nav
-        className="fixed top-0 left-0 right-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-700"
+        className="fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-gray-200 dark:border-slate-700 transition-colors duration-300"
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
@@ -25,7 +27,7 @@ const Navigation = ({ activeSection, setActiveSection, profileName }) => {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <motion.div
-              className="text-xl font-bold text-white cursor-pointer"
+              className="text-xl font-bold text-gray-900 dark:text-white cursor-pointer transition-colors duration-300"
               whileHover={{ scale: 1.05 }}
               onClick={() => setActiveSection(SECTIONS.ABOUT)}
             >
@@ -41,7 +43,7 @@ const Navigation = ({ activeSection, setActiveSection, profileName }) => {
                     className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all ${
                       activeSection === section.id
                         ? 'bg-blue-600 text-white shadow-lg'
-                        : 'text-gray-300 hover:text-white hover:bg-slate-700'
+                        : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-slate-700'
                     }`}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
@@ -69,7 +71,7 @@ const Navigation = ({ activeSection, setActiveSection, profileName }) => {
 
       {/* Mobile Navigation */}
       <motion.div
-        className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-slate-900/90 backdrop-blur-md border-t border-slate-700"
+        className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-t border-gray-200 dark:border-slate-700 transition-colors duration-300"
         initial={{ y: 100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
@@ -80,7 +82,9 @@ const Navigation = ({ activeSection, setActiveSection, profileName }) => {
               key={section.id}
               onClick={() => setActiveSection(section.id)}
               className={`flex flex-col items-center p-2 rounded-lg transition-colors ${
-                activeSection === section.id ? 'text-blue-400' : 'text-gray-400'
+                activeSection === section.id
+                  ? 'text-blue-400'
+                  : 'text-gray-600 dark:text-gray-400'
               }`}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}

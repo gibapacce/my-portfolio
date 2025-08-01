@@ -2,8 +2,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Download, MapPin, Github, Linkedin, Mail } from 'lucide-react';
 import { ANIMATION_VARIANTS } from '../../constants';
+import { useTheme } from '../../hooks/useLocalStorage';
 
 const About = ({ profileData }) => {
+  const [theme] = useTheme();
   const handleDownloadCV = () => {
     if (profileData.resumeUrl) {
       window.open(profileData.resumeUrl, '_blank');
@@ -37,7 +39,7 @@ const About = ({ profileData }) => {
             loading="lazy"
           />
           <motion.div
-            className="absolute -bottom-2 -right-2 bg-green-400 w-8 h-8 rounded-full border-4 border-slate-900"
+            className="absolute -bottom-2 -right-2 bg-green-400 w-8 h-8 rounded-full border-4 border-white dark:border-slate-900 transition-colors duration-300"
             animate={{ scale: [1, 1.2, 1] }}
             transition={{ duration: 2, repeat: Infinity }}
             title="Disponível para trabalho"
@@ -45,7 +47,7 @@ const About = ({ profileData }) => {
         </motion.div>
         
         <motion.h1
-          className="text-4xl md:text-6xl font-bold text-white mb-4"
+          className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4 transition-colors duration-300"
           variants={ANIMATION_VARIANTS.fadeIn}
         >
           {profileData.name}
@@ -59,7 +61,7 @@ const About = ({ profileData }) => {
         </motion.p>
         
         <motion.p
-          className="text-gray-300 max-w-2xl mx-auto text-lg"
+          className="max-w-2xl mx-auto text-lg text-gray-600 dark:text-gray-300 transition-colors duration-300"
           variants={ANIMATION_VARIANTS.fadeIn}
         >
           {profileData.bio}
@@ -69,14 +71,14 @@ const About = ({ profileData }) => {
           className="flex justify-center items-center space-x-6 mt-6"
           variants={ANIMATION_VARIANTS.fadeIn}
         >
-          <div className="flex items-center text-gray-300">
+          <div className="flex items-center text-gray-600 dark:text-gray-300 transition-colors duration-300">
             <MapPin size={16} className="mr-1" />
             {profileData.location}
           </div>
           
           <motion.a
             href={profileData.github}
-            className="text-gray-300 hover:text-white transition-colors"
+            className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
             whileHover={{ scale: 1.2 }}
             whileTap={{ scale: 0.9 }}
             target="_blank"
@@ -88,7 +90,7 @@ const About = ({ profileData }) => {
           
           <motion.a
             href={profileData.linkedin}
-            className="text-gray-300 hover:text-white transition-colors"
+            className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
             whileHover={{ scale: 1.2 }}
             whileTap={{ scale: 0.9 }}
             target="_blank"
@@ -100,7 +102,7 @@ const About = ({ profileData }) => {
           
           <motion.a
             href={`mailto:${profileData.email}`}
-            className="text-gray-300 hover:text-white transition-colors"
+            className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
             whileHover={{ scale: 1.2 }}
             whileTap={{ scale: 0.9 }}
             aria-label="Send Email"
@@ -112,8 +114,8 @@ const About = ({ profileData }) => {
 
       {/* About Content */}
       <motion.div variants={ANIMATION_VARIANTS.fadeIn}>
-        <h2 className="text-3xl font-bold text-white mb-6">Sobre Mim</h2>
-        <div className="prose prose-lg text-gray-300 max-w-none space-y-4">
+        <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6 transition-colors duration-300">Sobre Mim</h2>
+        <div className="prose prose-lg text-gray-700 dark:text-gray-300 max-w-none space-y-4 transition-colors duration-300">
           {profileData.aboutText?.map((paragraph, index) => (
             <motion.p
               key={index}

@@ -2,7 +2,7 @@ import React, { Suspense, lazy } from 'react';
 import { motion } from 'framer-motion';
 import SEO from './SEO';
 import Navigation from './Navigation';
-import { useActiveSection } from '../hooks/useLocalStorage';
+import { useActiveSection, useTheme } from '../hooks/useLocalStorage';
 import { useGitHub } from '../hooks/useGitHub';
 import { profileData } from '../data/profile';
 import { experiences } from '../data/experiences';
@@ -25,6 +25,7 @@ const SectionLoader = () => (
 
 const Portfolio = () => {
   const [activeSection, setActiveSection] = useActiveSection();
+  const [theme] = useTheme();
   const { repos: githubRepos, loading: githubLoading } = useGitHub(profileData.githubUsername);
 
   const renderActiveSection = () => {
@@ -80,7 +81,7 @@ const Portfolio = () => {
     <>
       <SEO />
       
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 transition-colors duration-300">
         {/* Navigation */}
         <Navigation 
           activeSection={activeSection}
@@ -97,8 +98,8 @@ const Portfolio = () => {
         >
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Content Container */}
-            <motion.div 
-              className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 shadow-2xl border border-slate-700"
+            <motion.div
+              className="backdrop-blur-sm rounded-2xl p-8 shadow-2xl bg-white/80 border border-gray-200 dark:bg-slate-800/50 dark:border-slate-700 transition-colors duration-300"
               variants={ANIMATION_VARIANTS.fadeIn}
               initial="hidden"
               animate="visible"
@@ -110,8 +111,8 @@ const Portfolio = () => {
 
         {/* Background Elements */}
         <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 dark:bg-blue-500/5 rounded-full blur-3xl transition-colors duration-300"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 dark:bg-purple-500/5 rounded-full blur-3xl transition-colors duration-300"></div>
         </div>
       </div>
     </>
